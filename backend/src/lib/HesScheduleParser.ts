@@ -1,5 +1,6 @@
 import { parse } from 'fast-html-parser';
 import { AllHtmlEntities } from 'html-entities';
+import * as moment from 'moment';
 const allEntities = new AllHtmlEntities();
 
 export interface IJsonScheduleGlobal {
@@ -17,7 +18,9 @@ export interface IJsonScheduleWeek {
 }
 
 export interface IJsonScheduleLesson {
-  
+  start: Date;
+  end: Date;
+  location: string;
 }
 
 function createScheduleWeek(dateString: string): IJsonScheduleWeek {
@@ -26,7 +29,7 @@ function createScheduleWeek(dateString: string): IJsonScheduleWeek {
   const month = parseInt(smonth) - 1; // months start at 0
   const year = parseInt(syear);
   return {
-    obj: new Date(year, month, day),
+    obj: moment(`${sday}-${smonth}-${syear}`, 'DD-MM-YYYY').toDate(),
     day,
     month,
     year,
@@ -34,27 +37,62 @@ function createScheduleWeek(dateString: string): IJsonScheduleWeek {
   };
 }
 
-function createScheduleLesson(nodes: any): IJsonScheduleLesson {
+function getDayFromString(dayString: string): number {
+  switch(dayString) {
+    case 'Lu/Mo':
+      return 0;
+    case 'Ma/Di':
+      return 1;
+    case 'Me/Mi':
+      return 2;
+    case 'Je/Do':
+      return 3;
+    case 'Ve/Fr':
+      return 4;
+    case 'Sa/Sa':
+      return 5;
+    default:
+      return 6;
+  }
+}
+
+function formatTime(timeString: string): string {
+  return timeString.replace(' h ', ':');
+}
+
+function createScheduleLesson(week: Date, nodes: any): IJsonScheduleLesson {
   let timeInfo = allEntities.decode(nodes[0].rawText.trim());
   const classInfo = nodes[3];
 
-    // remove non breaking spaces
-    timeInfo = timeInfo
-      .replace(/\r\n|\r/g, '\n')
-      .replace(/\t/g, '    ')
-      .replace(/\u00a0/g, ' ')
-      .replace(/\u2424/g, '\n');
+  // remove non breaking spaces
+  timeInfo = timeInfo
+    .replace(/\r\n|\r/g, '\n')
+    .replace(/\t/g, '    ')
+    .replace(/\u00a0/g, ' ')
+    .replace(/\u2424/g, '\n');
 
-    const [full, sday, start, end, location] = timeInfo.match(/^([a-zA-Z]{2}\/[a-zA-Z]{2})[\s]*([\d]{2}\sh\s[\d]{2})[\s]*-[\s]*([\d]{2}\sh\s[\d]{2})[\s]*-[\s]*(.+)$/);
+  const [full, sday, start, end, location] = timeInfo.match(/^([a-zA-Z]{2}\/[a-zA-Z]{2})[\s]*([\d]{2}\sh\s[\d]{2})[\s]*-[\s]*([\d]{2}\sh\s[\d]{2})[\s]*-[\s]*(.+)$/);
 
+  const startTime = moment(week).add(getDayFromString(sday), 'day');
+  const endTime = startTime.clone();
+  const hourStartTime = moment(formatTime(start), 'HH:mm');
+  const hourEndTime = moment(formatTime(end), 'HH:mm');
 
-  console.log('timeInfo', timeInfo);
-  console.log(' ');
-      // console.log('node 3', node.childNodes[3]);
-      // console.log(' ');
+  startTime.set({
+    hour: hourStartTime.get('hour'),
+    minute: hourStartTime.get('minute'),
+    second: hourStartTime.get('second')
+  });
+  endTime.set({
+    hour: hourEndTime.get('hour'),
+    minute: hourEndTime.get('minute'),
+    second: hourEndTime.get('second')
+  });
+
   return {
-    timeInfo,
-    classInfo,
+    start: startTime.toDate(),
+    end: endTime.toDate(),
+    location,
   }
 }
 
@@ -100,7 +138,7 @@ export function jsonParser(htmlContent: string): IJsonScheduleGlobal {
         currentWeek = createScheduleWeek(tmp1.rawText);
       } else {
         if (currentWeek !== undefined){
-          currentWeek.lessons.push(createScheduleLesson(node.childNodes));
+          currentWeek.lessons.push(createScheduleLesson(currentWeek.obj, node.childNodes));
         }
       }
     }
