@@ -4,6 +4,7 @@ import IControllerBase from '../interfaces/IControllerBase.interface'
 import { get } from 'request-promise';
 import { jsonParser, IJsonScheduleGlobal } from '../lib/HesScheduleParser';
 import * as ical from 'ical-generator';
+import { json } from 'body-parser';
 
 const basePlanningUrl: string = 'http://mobileapps.hevs.ch/HoraireBellevue/Planning.aspx?NoClasse=';
 class HomeController implements IControllerBase {
@@ -18,7 +19,7 @@ class HomeController implements IControllerBase {
   }
 
   index = async (req: Request, res: Response) => {
-    const classNo: number = 208; // TODO: use value from query
+    const classNo: number = req.query.classNo;
 
     const htmlContent = await get(`${basePlanningUrl}${classNo}`);
 
