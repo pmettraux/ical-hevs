@@ -3,6 +3,7 @@ import { Request, Response } from 'express'
 import IControllerBase from '../interfaces/IControllerBase.interface'
 import { get } from 'request-promise';
 import { jsonParser, IJsonScheduleGlobal } from '../lib/HesScheduleParser';
+import * as ical from 'ical-generator';
 
 const basePlanningUrl: string = 'http://mobileapps.hevs.ch/HoraireBellevue/Planning.aspx?NoClasse=';
 class HomeController implements IControllerBase {
@@ -21,7 +22,22 @@ class HomeController implements IControllerBase {
 
     const htmlContent = await get(`${basePlanningUrl}${classNo}`);
 
-    res.json({ sortedData: jsonParser(htmlContent) })
+    const sortedData: IJsonScheduleGlobal = jsonParser(htmlContent);
+    const cal = ical({domain: 'hevs.ch', name: `${sortedData.cat} - ${sortedData.classNo}`});
+    
+    sortedData.weeks.forEach(week => {
+      week.lessons.forEach(lesson => {
+        cal.createEvent({
+          start: lesson.start,
+          end: lesson.end,
+          summary: lesson.course,
+          description: `Teacher: ${lesson.teacher}`,
+          location: lesson.location,
+        });
+      })
+    })
+
+    cal.serve(res);
   }
 }
 
