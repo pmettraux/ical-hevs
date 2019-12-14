@@ -21,6 +21,8 @@ export interface IJsonScheduleLesson {
   start: Date;
   end: Date;
   location: string;
+  teacher: string;
+  course: string;
 }
 
 function createScheduleWeek(dateString: string): IJsonScheduleWeek {
@@ -62,7 +64,7 @@ function formatTime(timeString: string): string {
 
 function createScheduleLesson(week: Date, nodes: any): IJsonScheduleLesson {
   let timeInfo = allEntities.decode(nodes[0].rawText.trim());
-  const classInfo = nodes[3];
+  const [teacher, cat, classNo, course] = nodes[3].childNodes[0].rawText.split('-');
 
   // remove non breaking spaces
   timeInfo = timeInfo
@@ -93,6 +95,8 @@ function createScheduleLesson(week: Date, nodes: any): IJsonScheduleLesson {
     start: startTime.toDate(),
     end: endTime.toDate(),
     location,
+    teacher: teacher.trim(),
+    course: course.trim(),
   }
 }
 
