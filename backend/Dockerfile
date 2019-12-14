@@ -1,11 +1,12 @@
-FROM node:8.12
-
+FROM node:10.15.3
 
 ADD package.json /srv/package.json
 ADD package-lock.json /srv/package-lock.json
 RUN cd /srv && npm ci --unsafe-perm && apt-get clean
 
 ADD src /srv/src
-RUN cd /srv/ && npm run tsc
+RUN cd /srv/ && npm run build
+
+RUN cd /srv/ && npm run start
 
 EXPOSE 80
