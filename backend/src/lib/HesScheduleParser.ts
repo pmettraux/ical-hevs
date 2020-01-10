@@ -64,7 +64,7 @@ function formatTime(timeString: string): string {
 
 function createScheduleLesson(week: Date, nodes: any): IJsonScheduleLesson {
   let timeInfo = allEntities.decode(nodes[0].rawText.trim());
-  const [teacher, cat, classNo, course] = nodes[3].childNodes[0].rawText.split('-');
+  const [teacher, cat, classNo, course] = nodes[3].childNodes[0].rawText.split(' - ');
 
   // remove non breaking spaces
   timeInfo = timeInfo
