@@ -1,0 +1,468 @@
+[
+ {
+  "id":"1",
+    "classcode":"210",
+
+  "name":"Informatique (FIG)",
+  "parent_id":"0"
+ }, 
+ {
+  "id":"2",
+    "classcode":"210",
+
+  "name":"Economie (FEE)",
+  "parent_id":"0"
+ }, 
+ {
+  "id":"3",
+    "classcode":"210",
+
+  "name":"Tourisme (FTO)",
+  "parent_id":"0"
+ }, 
+ {
+  "id":"4",
+  "name":"601_3",
+  "classcode":"131",
+  "parent_id":"1"
+ }, 
+ {
+  "id":"5",
+  "name":"601_D",
+  "classcode":"210",
+  "parent_id":"1"
+ },
+{
+  "id":"6",
+  "name":"601_F",
+  "classcode":"203",
+  "parent_id":"1"
+},
+{
+  "id":"7",
+  "name":"602_3",
+  "classcode":"256",
+  "parent_id":"1"
+},
+{
+  "id":"8",
+  "name":"602_D",
+  "classcode":"332",
+  "parent_id":"1"
+},
+{
+  "id":"9",
+  "name":"602_F",
+  "classcode":"665",
+  "parent_id":"1"
+},
+{
+  "id":"10",
+  "name":"603_3",
+  "classcode":"640",
+  "parent_id":"1"
+},
+{
+  "id":"11",
+  "name":"603_D",
+  "classcode":"52",
+  "parent_id":"1"
+},
+{
+  "id":"12",
+  "name":"603_F",
+  "classcode":"204",
+  "parent_id":"1"
+},
+{
+  "id":"13",
+  "name":"604_3",
+  "classcode":"667",
+  "parent_id":"1"
+},
+{
+  "id":"14",
+  "name":"604_D",
+  "classcode":"338",
+  "parent_id":"1"
+},
+{
+  "id":"15",
+  "name":"604_F",
+  "classcode":"258",
+  "parent_id":"1"
+},
+{
+  "id":"16",
+  "name":"605_3",
+  "classcode":"208",
+  "parent_id":"1"
+},
+{
+  "id":"17",
+  "name":"605_D",
+  "classcode":"212",
+  "parent_id":"1"
+},
+{
+  "id":"18",
+  "name":"605_F",
+  "classcode":"205",
+  "parent_id":"1"
+},
+{
+  "id":"19",
+  "name":"606_3",
+  "classcode":"261",
+  "parent_id":"1"
+},
+{
+  "id":"20",
+  "name":"606_D",
+  "classcode":"666",
+  "parent_id":"1"
+},
+{
+  "id":"21",
+  "name":"606_F",
+  "classcode":"260",
+  "parent_id":"1"
+},
+{
+  "id":"22",
+  "name":"607_3",
+  "classcode":"642",
+  "parent_id":"1"
+},
+{
+  "id":"23",
+  "name":"608_3",
+  "classcode":"668",
+  "parent_id":"1"
+},
+{
+  "id":"24",
+  "name":"Divers",
+  "classcode":"350",
+  "parent_id":"1"
+},
+{
+  "id":"25",
+  "name":"401_F",
+  "classcode":"654",
+  "parent_id":"2"
+},
+{
+  "id":"26",
+  "name":"402_F",
+  "classcode":"183",
+  "parent_id":"2"
+},
+{
+  "id":"27",
+  "name":"403_F",
+  "classcode":"655",
+  "parent_id":"2"
+},
+{
+  "id":"28",
+  "name":"404_F",
+  "classcode":"663",
+  "parent_id":"2"
+},
+{
+  "id":"29",
+  "name":"405_F",
+  "classcode":"656",
+  "parent_id":"2"
+},
+{
+  "id":"30",
+  "name":"406_F",
+  "classcode":"664",
+  "parent_id":"2"
+},
+{
+  "id":"31",
+  "name":"407_F",
+  "classcode":"673",
+  "parent_id":"2"
+},
+{
+  "id":"32",
+  "name":"408_F",
+  "classcode":"658",
+  "parent_id":"2"
+},
+{
+  "id":"33",
+  "name":"501_1",
+  "classcode":"646",
+  "parent_id":"2"
+},
+{
+  "id":"34",
+  "name":"501_2",
+  "classcode":"647",
+  "parent_id":"2"
+},
+{
+  "id":"35",
+  "name":"501_D",
+  "classcode":"643",
+  "parent_id":"2"
+},
+{
+  "id":"36",
+  "name":"501_F",
+  "classcode":"660",
+  "parent_id":"2"
+},
+{
+  "id":"37",
+  "name":"502_1",
+  "classcode":"464",
+  "parent_id":"2"
+},
+{
+  "id":"38",
+  "name":"502_2",
+  "classcode":"465",
+  "parent_id":"2"
+},
+{
+  "id":"39",
+  "name":"502_D",
+  "classcode":"273",
+  "parent_id":"2"
+},
+{
+  "id":"40",
+  "name":"502_F",
+  "classcode":"674",
+  "parent_id":"2"
+},
+{
+  "id":"41",
+  "name":"503_1",
+  "classcode":"648",
+  "parent_id":"2"
+},
+{
+  "id":"42",
+  "name":"503_2",
+  "classcode":"649",
+  "parent_id":"2"
+},
+{
+  "id":"43",
+  "name":"503_D",
+  "classcode":"644",
+  "parent_id":"2"
+},
+{
+  "id":"44",
+  "name":"503_F",
+  "classcode":"675",
+  "parent_id":"2"
+},
+{
+  "id":"45",
+  "name":"504_1",
+  "classcode":"651",
+  "parent_id":"2"
+},
+{
+  "id":"46",
+  "name":"504_2",
+  "classcode":"652",
+  "parent_id":"2"
+},
+{
+  "id":"47",
+  "name":"504_D",
+  "classcode":"650",
+  "parent_id":"2"
+},
+{
+  "id":"48",
+  "name":"504_F",
+  "classcode":"676",
+  "parent_id":"2"
+},
+{
+  "id":"49",
+  "name":"505_D",
+  "classcode":"645",
+  "parent_id":"2"
+},
+{
+  "id":"50",
+  "name":"505_F",
+  "classcode":"653",
+  "parent_id":"2"
+},
+{
+  "id":"51",
+  "name":"506_D",
+  "classcode":"661",
+  "parent_id":"2"
+},
+{
+  "id":"52",
+  "name":"506_F",
+  "classcode":"662",
+  "parent_id":"2"
+},
+{
+  "id":"53",
+  "name":"905_F",
+  "classcode":"683",
+  "parent_id":"2"
+},
+{
+  "id":"54",
+  "name":"Divers",
+  "classcode":"349",
+  "parent_id":"2"
+},
+{
+  "id":"55",
+  "name":"701_a",
+  "classcode":"619",
+  "parent_id":"3"
+},
+{
+  "id":"56",
+  "name":"701_b",
+  "classcode":"620",
+  "parent_id":"3"
+},
+{
+  "id":"57",
+  "name":"701_c",
+  "classcode":"621",
+  "parent_id":"3"
+},
+{
+  "id":"58",
+  "name":"701_d",
+  "classcode":"622",
+  "parent_id":"3"
+},
+{
+  "id":"59",
+  "name":"701_e",
+  "classcode":"623",
+  "parent_id":"3"
+},
+{
+  "id":"60",
+  "name":"702_a",
+  "classcode":"629",
+  "parent_id":"3"
+},
+{
+  "id":"61",
+  "name":"702_b",
+  "classcode":"630",
+  "parent_id":"3"
+},
+{
+  "id":"62",
+  "name":"702_c",
+  "classcode":"631",
+  "parent_id":"3"
+},
+{
+  "id":"63",
+  "name":"702_d",
+  "classcode":"632",
+  "parent_id":"3"
+},
+{
+  "id":"64",
+  "name":"702_e",
+  "classcode":"633",
+  "parent_id":"3"
+},
+{
+  "id":"65",
+  "name":"703_a",
+  "classcode":"624",
+  "parent_id":"3"
+},
+{
+  "id":"66",
+  "name":"703_b",
+  "classcode":"625",
+  "parent_id":"3"
+},
+{
+  "id":"67",
+  "name":"703_c",
+  "classcode":"626",
+  "parent_id":"3"
+},
+{
+  "id":"68",
+  "name":"703_d",
+  "classcode":"627",
+  "parent_id":"3"
+},
+{
+  "id":"69",
+  "name":"703_e",
+  "classcode":"628",
+  "parent_id":"3"
+},
+{
+  "id":"70",
+  "name":"704_a",
+  "classcode":"634",
+  "parent_id":"3"
+},
+{
+  "id":"71",
+  "name":"704_b",
+  "classcode":"635",
+  "parent_id":"3"
+},
+{
+  "id":"72",
+  "name":"704_c",
+  "classcode":"636",
+  "parent_id":"3"
+},
+{
+  "id":"73",
+  "name":"704_d",
+  "classcode":"637",
+  "parent_id":"3"
+},
+{
+  "id":"74",
+  "name":"704_e",
+  "classcode":"638",
+  "parent_id":"3"
+},
+{
+  "id":"75",
+  "name":"705",
+  "classcode":"399",
+  "parent_id":"3"
+},
+{
+  "id":"76",
+  "name":"705_D",
+  "classcode":"639",
+  "parent_id":"3"
+},
+{
+  "id":"77",
+  "name":"Divers",
+  "classcode":"354",
+  "parent_id":"3"
+}
+ 
+]
