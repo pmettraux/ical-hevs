@@ -6,7 +6,7 @@ import loggerMiddleware from './middlewares/logger'
 import IcalController from './controllers/ical.controller'
 
 const app = new App({
-  port: 8080,
+  port: 80,
   controllers: [
     new IcalController(),
   ],
