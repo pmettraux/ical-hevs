@@ -7,8 +7,10 @@ RUN cd /srv && npm ci --unsafe-perm && apt-get clean
 ADD tsconfig.json /srv/tsconfig.json
 ADD src /srv/src
 
+
 RUN cd /srv/ && npm run build
 
-RUN cd /srv/ && npm run start
+WORKDIR /srv
+CMD [ "npm", "start" ]
 
 EXPOSE 80
