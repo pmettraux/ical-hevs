@@ -41,6 +41,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/classes.js"></script>
     <!-- Select css -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -83,8 +84,7 @@
                 </select>
             </div>
             <div style="margin-top:30px">
-                <select name="classe" id="classe" class="form-control input-lg">
-                    <option value="">Selectionnez votre classe</option>
+                <select name="classe" id="classe" class="form-control input-lg" style="display:none;">
                 </select>
 
             </div>
@@ -98,83 +98,30 @@
         </div>
 
         <script>
-            function Copy() {
-                var Url = document.createElement("textarea");
-                Url.innerHTML = window.location.href;
-                Copied = Url.createTextRange();
-                Copied.execCommand("Copy");
-            }
-            $(document).ready(function() {
-
-                load_json_data('filiere');
-
-                function load_json_data(id, parent_id) {
-                    var html_code = '';
-
-                    $.getJSON('classes.json', function(data) {
-
-                        dataType: "jsonp",
-
-                        html_code += '<option value="">Selectionnez votre ' + id + '</option>';
-                        $.each(data, function(key, value) {
-                            if (id == 'filiere') {
-                                if (value.parent_id == '0') {
-                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
-                                }
-                            } else {
-                                if (value.parent_id == parent_id) {
-                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
-                                }
-                            }
+            function showClasses(catname) {
+                allClasses.forEach(function(d) {
+                    if (d.catname === catname) {
+                        $('#classe option').remove();
+                        d.classes.forEach(function(c) {
+                            $('#classe').append($('<option/>')
+                                .val(c.id)
+                                .text(c.name))
                         });
-                        $('#' + id).html(html_code);
-                    });
-
-                }
-
-                function load_json_data(id, parent_id) {
-                    var html_code = '';
-                    $.getJSON('classes.json', function(data) {
-
-                        dataType: "jsonp",
-
-                        html_code += '<option value="">Selectionnez votre ' + id + '</option>';
-                        $.each(data, function(key, value) {
-                            if (id == 'filiere') {
-                                if (value.parent_id == '0') {
-                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
-                                }
-                            } else {
-                                if (value.parent_id == parent_id) {
-                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
-                                }
-                            }
-                        });
-                        $('#' + id).html(html_code);
-                    });
-
-                }
-
-                $(document).on('change', '#filiere', function() {
-                    var filiere_id = $(this).val();
-                    if (filiere_id != '') {
-                        load_json_data('classe', filiere_id);
-                    } else {
-                        $('#classe').html('<option value="">Select classe</option>');
-                        $('#classcode').html('<option value="">Select classcode</option>');
-
                     }
                 });
+            }
 
-                /*quand il y a un changement sur classe */
-                $(document).on('change', '#classe', function() {
-
-                    //libérer le champ générate ICall
-
-                    //lui fournir le numéro de la classe
-
-
+            $(document).ready(function() {
+                allClasses.forEach(function(d) {
+                    $('#filiere').append($('<option/>')
+                        .val(d.catname)
+                        .text(d.catname))
                 });
+
+                $('#filiere').on('change', function() {
+                    showClasses($(this).val());
+                    $('#classe').show();
+                })
             });
         </script>
         <!-- jQuery -->

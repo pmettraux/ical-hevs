@@ -1,4 +1,4 @@
-[
+var allClasses = [
   {
     "catname": "Informatique (FIG)",
     "classes": [
