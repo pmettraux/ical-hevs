@@ -1,26 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
 <style>
-.example_e {
-border: none;
-background: #808080;
-color: #ffffff !important;
-font-weight: 100;
-padding: 20px;
-text-transform: uppercase;
-border-radius: 6px;
-display: inline-block;
-transition: all 0.3s ease 0s;
-}
-.example_e:hover {
-color: #404040 !important;
-font-weight: 700 !important;
-letter-spacing: 3px;
-background: none;
--webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
--moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
-transition: all 0.3s ease 0s;
-}  
+    .example_e {
+        border: none;
+        background: #808080;
+        color: #ffffff !important;
+        font-weight: 100;
+        padding: 20px;
+        text-transform: uppercase;
+        border-radius: 6px;
+        display: inline-block;
+        transition: all 0.3s ease 0s;
+    }
+
+    .example_e:hover {
+        color: #404040 !important;
+        font-weight: 700 !important;
+        letter-spacing: 3px;
+        background: none;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0, 0, 0, 0.57);
+        transition: all 0.3s ease 0s;
+    }
 </style>
 
 <head>
@@ -37,7 +38,9 @@ transition: all 0.3s ease 0s;
     <!-- main css -->
     <link href="css/style.css" rel="stylesheet">
     <script src="js/modernizr.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Select css -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -56,20 +59,18 @@ transition: all 0.3s ease 0s;
         </div>
     </div>
     <!-- end Preloader -->
-
-
     <!-- box header -->
     <div class="top-bar">
         <section class="box-intro" style="height:0">
             <div class="table-cell">
-                <h1 class="box-headline letters rotate-2">
-                    <span class="box-words-wrapper" style="align-content: center">
+                <h1 class="box-headline letters rotate-2" style="align-content: center">
+                    <span class="box-words-wrapper">
                         <b class="is-visible">Informatique.</b>
                         <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Economie.</b>
                         <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tourisme.</b>
                     </span>
                 </h1>
-                <h5>Generate your Icall</h5>
+                <h5 style="align-content: center">Generate your Icall</h5>
             </div>
         </section>
     </div>
@@ -77,18 +78,15 @@ transition: all 0.3s ease 0s;
     <body>
         <div class="container main-container">
             <div>
-                <select class="selectpicker form-control" data-container="body" title="Choose a sector" data-hide-disabled="true">
-                    <option value="fig">Informatique (FIG)</option>
-                    <option value="fee">Economique (FEE)</option>
-                    <option value="fto">Tourisme (FTO)</option>
+                <select name="filiere" id="filiere" class="form-control input-lg">
+                    <option value="">Selectionnez votre filière</option>
                 </select>
             </div>
             <div style="margin-top:30px">
-                <select class="selectpicker form-control" data-container="body" title="Choose a sector" data-hide-disabled="true">
-                    <option value="fig">Informatique (FIG)</option>
-                    <option value="fee">Economique (FEE)</option>
-                    <option value="fto">Tourisme (FTO)</option>
+                <select name="classe" id="classe" class="form-control input-lg">
+                    <option value="">Selectionnez votre classe</option>
                 </select>
+
             </div>
             <div class="button_cont" align="center" style="margin-top: 20px">
                 <input class="example_e" type="button" value="GET ICALL" onclick="Copy();" />
@@ -106,6 +104,78 @@ transition: all 0.3s ease 0s;
                 Copied = Url.createTextRange();
                 Copied.execCommand("Copy");
             }
+            $(document).ready(function() {
+
+                load_json_data('filiere');
+
+                function load_json_data(id, parent_id) {
+                    var html_code = '';
+
+                    $.getJSON('classes.json', function(data) {
+
+                        dataType: "jsonp",
+
+                        html_code += '<option value="">Selectionnez votre ' + id + '</option>';
+                        $.each(data, function(key, value) {
+                            if (id == 'filiere') {
+                                if (value.parent_id == '0') {
+                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
+                                }
+                            } else {
+                                if (value.parent_id == parent_id) {
+                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
+                                }
+                            }
+                        });
+                        $('#' + id).html(html_code);
+                    });
+
+                }
+
+                function load_json_data(id, parent_id) {
+                    var html_code = '';
+                    $.getJSON('classes.json', function(data) {
+
+                        dataType: "jsonp",
+
+                        html_code += '<option value="">Selectionnez votre ' + id + '</option>';
+                        $.each(data, function(key, value) {
+                            if (id == 'filiere') {
+                                if (value.parent_id == '0') {
+                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
+                                }
+                            } else {
+                                if (value.parent_id == parent_id) {
+                                    html_code += '<option value="' + value.id + '">' + value.name + '</option>';
+                                }
+                            }
+                        });
+                        $('#' + id).html(html_code);
+                    });
+
+                }
+
+                $(document).on('change', '#filiere', function() {
+                    var filiere_id = $(this).val();
+                    if (filiere_id != '') {
+                        load_json_data('classe', filiere_id);
+                    } else {
+                        $('#classe').html('<option value="">Select classe</option>');
+                        $('#classcode').html('<option value="">Select classcode</option>');
+
+                    }
+                });
+
+                /*quand il y a un changement sur classe */
+                $(document).on('change', '#classe', function() {
+
+                    //libérer le champ générate ICall
+
+                    //lui fournir le numéro de la classe
+
+
+                });
+            });
         </script>
         <!-- jQuery -->
         <script src="js/jquery-2.1.1.js"></script>
@@ -119,4 +189,6 @@ transition: all 0.3s ease 0s;
         <!--  custom script -->
         <script src="js/custom.js"></script>
 
-    </body></html>
+    </body>
+
+</html>
