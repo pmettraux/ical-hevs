@@ -88,27 +88,24 @@
                 </select>
 
             </div>
-            <div class="button_cont" align="center" style="margin-top: 20px">
-                <input class="example_e" type="button" value="GET ICALL" onclick="Copy();" />
-            </div>
-            <div class="button_cont" align="center" style="margin-top: 20px">
-                <input class="example_e" type="button" value="Copy Url" onclick="Copy();" />
-                <br />
-            </div>
+            <input type="text" id="url-ical" class="input-lg" style="display:none; width:100%; margin-top: 30px;" disabled="disabled">
         </div>
 
         <script>
+            var BACKEND_URL = 'http://172.17.0.2/v1/icall?classNo=';
+
             function showClasses(catname) {
                 allClasses.forEach(function(d) {
                     if (d.catname === catname) {
                         $('#classe option').remove();
                         d.classes.forEach(function(c) {
                             $('#classe').append($('<option/>')
-                                .val(c.id)
+                                .val(c.classId)
                                 .text(c.name))
                         });
                     }
                 });
+                $('#url-ical').val(BACKEND_URL + $('#classe').val());
             }
 
             $(document).ready(function() {
@@ -121,7 +118,12 @@
                 $('#filiere').on('change', function() {
                     showClasses($(this).val());
                     $('#classe').show();
-                })
+                    $('#url-ical').show();
+                });
+
+                $('#classe').on('change', function() {
+                    $('#url-ical').val(BACKEND_URL + $('#classe').val());
+                });
             });
         </script>
         <!-- jQuery -->
