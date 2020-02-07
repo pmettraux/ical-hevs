@@ -1,4 +1,4 @@
-FROM node:10.15.3
+FROM node:8
 
 ADD package.json /srv/package.json
 ADD package-lock.json /srv/package-lock.json
