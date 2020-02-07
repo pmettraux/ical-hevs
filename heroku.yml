@@ -1,0 +1,5 @@
+build:
+  docker:
+    backend: ./backend/Dockerfile
+  run:
+    backend: bundle exec puma -C config/puma.rb
