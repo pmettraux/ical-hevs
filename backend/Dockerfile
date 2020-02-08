@@ -1,4 +1,4 @@
-FROM node:10.15.3
+FROM node:8
 
 ADD package.json /srv/package.json
 ADD package-lock.json /srv/package-lock.json
@@ -11,6 +11,5 @@ ADD src /srv/src
 RUN cd /srv/ && npm run build
 
 WORKDIR /srv
-CMD [ "npm", "start" ]
 
-EXPOSE 80
+CMD [ "npm", "start" ]
