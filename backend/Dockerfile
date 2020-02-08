@@ -11,6 +11,5 @@ ADD src /srv/src
 RUN cd /srv/ && npm run build
 
 WORKDIR /srv
-CMD [ "npm", "start" ]
 
-EXPOSE 80
+CMD [ "npm", "start" ]
