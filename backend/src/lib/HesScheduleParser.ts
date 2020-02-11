@@ -31,7 +31,7 @@ function createScheduleWeek(dateString: string): IJsonScheduleWeek {
   const month = parseInt(smonth) - 1; // months start at 0
   const year = parseInt(syear);
   return {
-    obj: moment(`${sday}-${smonth}-${syear}`, 'DD-MM-YYYY').toDate(),
+    obj: moment.tz(`${sday}-${smonth}-${syear}`, 'DD-MM-YYYY', 'Europe/Zurich').toDate(),
     day,
     month,
     year,
@@ -75,10 +75,10 @@ function createScheduleLesson(week: Date, nodes: any): IJsonScheduleLesson {
 
   const [full, sday, start, end, location] = timeInfo.match(/^([a-zA-Z]{2}\/[a-zA-Z]{2})[\s]*([\d]{2}\sh\s[\d]{2})[\s]*-[\s]*([\d]{2}\sh\s[\d]{2})[\s]*-[\s]*(.+)$/);
 
-  const startTime = moment(week).add(getDayFromString(sday), 'day');
+  const startTime = moment.tz(week, 'Europe/Zurich').add(getDayFromString(sday), 'day');
   const endTime = startTime.clone();
-  const hourStartTime = moment(formatTime(start), 'HH:mm');
-  const hourEndTime = moment(formatTime(end), 'HH:mm');
+  const hourStartTime = moment.tz(formatTime(start), 'HH:mm', 'Europe/Zurich');
+  const hourEndTime = moment.tz(formatTime(end), 'HH:mm', 'Europe/Zurich');
 
   startTime.set({
     hour: hourStartTime.get('hour'),
